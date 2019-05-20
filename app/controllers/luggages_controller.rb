@@ -46,6 +46,6 @@ class LuggagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def luggage_params
-      params.require(:luggage).permit(:weight)
+      params.require(:luggage).permit(:weight, :status)
     end
 end

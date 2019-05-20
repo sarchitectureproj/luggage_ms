@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
 
-    has_many: luggages
+    has_many :luggages
+
 end

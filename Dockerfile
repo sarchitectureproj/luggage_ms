@@ -8,4 +8,4 @@ WORKDIR /myapp
 COPY . /myapp
 RUN bundle install
 WORKDIR /myapp
-EXPOSE 3000
+EXPOSE 4004

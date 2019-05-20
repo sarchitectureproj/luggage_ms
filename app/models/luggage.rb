@@ -1,4 +1,7 @@
 class Luggage < ApplicationRecord
 
-    has_one: tag
+    belongs_to :tag
+
+    enum status: [ :Registered, :InRoute, :Delivered]
+
 end
