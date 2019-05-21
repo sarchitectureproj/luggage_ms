@@ -38,6 +38,14 @@ class LuggagesController < ApplicationController
     @luggage.destroy
   end
 
+
+  def search_luggages_by_tag
+    luggages_by_tag = Luggage.search_luggages_by_tag(params[:tag_id])
+    render json: {
+            luggages: luggages_by_tag
+           }, fields: %i[id weight status], include: []
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_luggage
@@ -46,6 +54,6 @@ class LuggagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def luggage_params
-      params.require(:luggage).permit(:weight, :status)
+      params.require(:luggage).permit(:weight, :status, :tag_id)
     end
 end
