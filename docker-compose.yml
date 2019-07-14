@@ -1,13 +1,19 @@
 version: '2'
 services:
- web:
+ luggage-ms:
   build: .
-  command: bash -c "rails db:drop && rails db:create && rails db:migrate && rails db:seed && rails s -p 4004 -b 0.0.0.0"
+  command: bash -c "sleep 5 && rm -f tmp/pids/server.pid && bundle exec rails db:drop db:create db:migrate db:seed && bundle exec rails s -p 4004 -b 0.0.0.0"
   ports:
    - "4004:4004"
   depends_on:
-   - db
- db:
-  image: postgres
-  volumes:
-   - ./tmp/db:/var/lib/postgresql/data
+   - luggage-db
+ luggage-db:
+  image: mysql:5.7
+  ports:
+    - "3307:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: 123
+    MYSQL_USER: arquisoft
+    MYSQL_PASSWORD: 123
+    MYSQL_DATABASE: luggage_db
+    MYSQL_HOST: luggage-db
